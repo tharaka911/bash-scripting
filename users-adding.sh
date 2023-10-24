@@ -2,14 +2,14 @@
 
 # Define an array with user information
 users=(
-    "lakshan_sl \"ssh_key1\" \"password1\""
+    "lakshan_sl \"password\" \"ssh-key\""
     # Add more users as needed
 )
 
 # Iterate through the array and create users with SSH keys and passwords
 for user_info in "${users[@]}"; do
     # Split the user information into username, public key, and password
-    read -r username public_key password <<< "$user_info"
+    read -r username password public_key  <<< "$user_info"
 
     # Remove the double quotes around the public key and password
     public_key="${public_key//\"/}"
