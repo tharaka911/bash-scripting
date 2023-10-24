@@ -16,7 +16,7 @@ for user_info in "${users[@]}"; do
     password="${password//\"/}"
 
     # Create a new user with the specified password
-    sudo useradd -m -p "$(openssl passwd -1 "$password")" "$username"
+    sudo useradd -m -p "$(openssl passwd -1 "$password")" -s /bin/bash "$username"
 
     # Add the user to the sudo group
     sudo usermod -aG sudo "$username"
@@ -40,3 +40,4 @@ for user_info in "${users[@]}"; do
     echo "To log in as $username, use the following command:"
     echo "ssh $username@<server-ip> -p <port-number>"
 done
+ 
