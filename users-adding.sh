@@ -24,17 +24,15 @@ for user_info in "${users[@]}"; do
     # Switch to the user's home directory
     user_home_directory="/home/$username"
 
-    # Create the .ssh directory and authorized_keys file
-    sudo -u $username mkdir -p "$user_home_directory/.ssh"
-    sudo -u $username touch "$user_home_directory/.ssh/authorized_keys"
+    cd "$user_home_directory"
+    mkdir -p .ssh
+    cd .ssh
 
     # Add the public key to authorized_keys
-    echo "$public_key" | sudo -u $username tee -a "$user_home_directory/.ssh/authorized_keys" > /dev/null
+    echo "$public_key" >> authorized_keys
 
-    # Set proper permissions
-    sudo -u $username chmod 700 "$user_home_directory"
-    sudo -u $username chmod 700 "$user_home_directory/.ssh"
-    sudo -u $username chmod 600 "$user_home_directory/.ssh/authorized_keys"
+    chown "$root":"$username" "$user_home_directory/.ssh" -R
+    chmod 770 "$user_home_directory/.ssh" -R
 
     echo "User $username created with SSH key and password."
 
