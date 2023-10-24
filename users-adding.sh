@@ -1,10 +1,15 @@
 #!/bin/bash
 
 # Define an array with user information
-users=(
+users=(`
     "lakshan_sl \"password\" \"ssh-key\""
+    "pasindu_sl \"password\" \"ssh-key\""
+    "pamuditha_sl \"password\" \"ssh-key\""
+    "harsh_in \"password\" \"ssh-key\""
+    "manjunath_in \"password\" \"ssh-key\""
+    "bhavya_in \"password\" \"ssh-key\""
     # Add more users as needed
-)
+`)
 
 # Iterate through the array and create users with SSH keys and passwords
 for user_info in "${users[@]}"; do
